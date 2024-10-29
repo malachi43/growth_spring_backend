@@ -7,7 +7,11 @@ import notFound from "./middlewares/notFound.js";
 import express from "express";
 const app = express();
 import morgan from "morgan";
+import cors from "cors";
 const PORT = process.env.PORT || 3000;
+
+//cors
+app.use(cors());
 
 //middleware to parse json payload
 app.use(express.json({ limit: "30mb" }));
