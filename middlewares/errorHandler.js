@@ -2,7 +2,6 @@ import joiPkg from "joi"
 const { ValidationError } = joiPkg;
 
 const errorHandler = (err, req, res, next) => {
-    console.log(err);
     //this field (errorResponse) is created by mongoose when an error occurs.
     const { errorResponse } = err
 

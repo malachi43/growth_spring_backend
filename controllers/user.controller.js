@@ -25,7 +25,6 @@ class UserController {
         if (!existingUser) throw new BadRequestError("invalid email or password", 400)
 
         const isPasswordValid = await existingUser.comparePassword(password)
-        console.log("isPasswordValid: ", isPasswordValid)
 
         if (!isPasswordValid) throw new BadRequestError("invalid email or password", 400)
 
