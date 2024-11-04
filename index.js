@@ -42,4 +42,6 @@ const startServer = async (url) => {
     }
 }
 
+
 startServer(process.env.MONGO_URL_DEV)
+export default startServer

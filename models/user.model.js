@@ -26,11 +26,19 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function () {
     if (this.isModified("password")) {
+        console.log("password has been modified. (save)")
         const saltRound = 16;
         const salt = await genSalt(saltRound);
         this.password = await hash(this.password, salt);
     }
 })
+
+userSchema.methods.hashPassword = async function (newPassword) {
+    const saltRound = 16;
+    const salt = await genSalt(saltRound);
+    const hashedPassword = await hash(newPassword, salt);
+    return hashedPassword;
+}
 
 userSchema.methods.comparePassword = async function (userPassword) {
     return await compare(userPassword, this.password);
@@ -43,6 +51,8 @@ userSchema.methods.toJSON = function () {
         businessName: this.businessName
     }
 }
+
+
 
 
 export default model("User", userSchema);
